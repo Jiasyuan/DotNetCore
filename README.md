@@ -1,0 +1,2 @@
+# DotNetCore
+DotNetCore Exercise Project
