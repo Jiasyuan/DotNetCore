@@ -5,23 +5,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.MVC5MSDI.Resolver
 {
-    public class CoreDIDependencyResolver :IDependencyResolver
+    public class CoreDIDependencyResolver : IDependencyResolver
     {
-        private ServiceProvider serviceProvider;
+        private IServiceProvider serviceProvider;
 
-        public CoreDIDependencyResolver(ServiceProvider serviceProvider)
+        public CoreDIDependencyResolver(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
         }
 
         public object GetService(Type serviceType)
         {
-            throw new NotImplementedException();
+            return serviceProvider.GetService(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            throw new NotImplementedException();
+            return serviceProvider.GetServices(serviceType);
         }
     }
 }
