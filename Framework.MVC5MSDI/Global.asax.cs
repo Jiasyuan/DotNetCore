@@ -4,6 +4,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Framework.MVC5MSDI.Resolver;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Framework.MVC5MSDI
 {
@@ -37,6 +38,13 @@ namespace Framework.MVC5MSDI
             controllers.ForEach(ctrl => services.AddTransient(ctrl));
             //µù¥UHttpClient
             services.AddHttpClient();
+
+            //µù¥ULogging
+            services.AddLogging(builder => {
+                //builder.ClearProviders();
+                builder.AddDebug();
+                builder.SetMinimumLevel(LogLevel.Debug);
+            });
         }
     }
 }
