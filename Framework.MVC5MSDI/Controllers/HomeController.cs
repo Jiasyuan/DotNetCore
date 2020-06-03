@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Extensions.Http;
 
 namespace Framework.MVC5MSDI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly HttpClient httpClient;
+
+        public HomeController(IHttpClientFactory httpClientFactory)
+        {
+            this.httpClient = httpClientFactory.CreateClient();
+        }
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public async System.Threading.Tasks.Task<ActionResult> About()
         {
-            ViewBag.Message = "Your application description page.";
+            var result = await httpClient.GetStringAsync("https://apiservice.mol.gov.tw/OdService/download/A17030000J-000047-cEE");
+            ViewBag.Message = result;
 
             return View();
         }

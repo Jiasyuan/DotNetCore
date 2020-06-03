@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.UI;
 using Framework.MVC5MSDI.Resolver;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -40,7 +35,7 @@ namespace Framework.MVC5MSDI
                             .ToList();
             //將Controller加入ServiceCollection
             controllers.ForEach(ctrl => services.AddTransient(ctrl));
-            //加入HttpClient
+            //註冊HttpClient
             services.AddHttpClient();
         }
     }
