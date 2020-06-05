@@ -25,6 +25,8 @@ namespace DotNetCore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //封包壓縮的服務
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,10 @@ namespace DotNetCore.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            // 封包壓縮的 Middleware
+            app.UseResponseCompression();
+            app.UseStaticFiles();
+            
 
             app.UseRouting();
 
